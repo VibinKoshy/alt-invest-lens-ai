@@ -12,9 +12,9 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarTrigger,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { Button } from '@/components/ui/button';
 
 const portfolioItems = [
   { title: 'Dashboard', url: '/', icon: Home },
@@ -46,13 +46,8 @@ export function AppSidebar() {
 
   return (
     <Sidebar className="border-r border-gray-200">
-      <SidebarHeader className="border-b border-gray-200 p-4">
-        <div className="flex items-center space-x-2">
-          <TrendingUp className="h-8 w-8 text-blue-600" />
-          {!isCollapsed && (
-            <h1 className="text-xl font-bold text-gray-900">Portfolio Analyzer</h1>
-          )}
-        </div>
+      <SidebarHeader className="border-b border-gray-200 p-2">
+        <SidebarTrigger />
       </SidebarHeader>
 
       <SidebarContent className="p-2">
