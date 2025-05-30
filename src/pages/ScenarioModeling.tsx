@@ -71,12 +71,16 @@ const ScenarioModeling = () => {
           <p className="text-gray-600">Adjust assumptions and view real-time portfolio forecasts</p>
         </div>
 
-        <Tabs defaultValue="modeling" className="space-y-8">
-          <TabsList className="grid w-full grid-cols-3 lg:w-[400px]">
-            <TabsTrigger value="modeling" className="py-[5px] my-[5px] mx-[5px]">Interactive Modeling</TabsTrigger>
-            <TabsTrigger value="comparison">Scenario Comparison</TabsTrigger>
+        <Tabs defaultValue="presets" className="space-y-8">
+          <TabsList className="grid w-full grid-cols-3">
             <TabsTrigger value="presets">Market Scenarios</TabsTrigger>
+            <TabsTrigger value="modeling">Interactive Modeling</TabsTrigger>
+            <TabsTrigger value="comparison">Scenario Comparison</TabsTrigger>
           </TabsList>
+
+          <TabsContent value="presets">
+            <MarketScenarios onLoadScenario={loadScenario} />
+          </TabsContent>
 
           <TabsContent value="modeling" className="space-y-8">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -94,10 +98,6 @@ const ScenarioModeling = () => {
             name: 'Current',
             assumptions
           }} savedScenarios={savedScenarios} onLoadScenario={loadScenario} />
-          </TabsContent>
-
-          <TabsContent value="presets">
-            <MarketScenarios onLoadScenario={loadScenario} />
           </TabsContent>
         </Tabs>
       </main>
