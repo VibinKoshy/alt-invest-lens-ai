@@ -1,5 +1,5 @@
 
-import { TrendingUp, Settings, Bell, User, Upload, BarChart3, Shield } from 'lucide-react';
+import { TrendingUp, Settings, Bell, User, Upload, BarChart3, Shield, Bot } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -64,6 +64,17 @@ const Header = () => {
             >
               <Shield className="h-4 w-4" />
               <span>Risk & Compliance</span>
+            </Link>
+            <Link 
+              to="/ai-assistant" 
+              className={`flex items-center space-x-1 text-sm font-medium transition-colors ${
+                isActive('/ai-assistant') 
+                  ? 'text-blue-600 border-b-2 border-blue-600 pb-1' 
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              <Bot className="h-4 w-4" />
+              <span>AI Assistant</span>
             </Link>
           </nav>
         </div>
