@@ -1,5 +1,5 @@
 
-import { TrendingUp, Settings, Bell, User, Upload } from 'lucide-react';
+import { TrendingUp, Settings, Bell, User, Upload, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -42,6 +42,17 @@ const Header = () => {
             >
               <Upload className="h-4 w-4" />
               <span>Data Upload</span>
+            </Link>
+            <Link 
+              to="/scenarios" 
+              className={`flex items-center space-x-1 text-sm font-medium transition-colors ${
+                isActive('/scenarios') 
+                  ? 'text-blue-600 border-b-2 border-blue-600 pb-1' 
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              <BarChart3 className="h-4 w-4" />
+              <span>Scenario Modeling</span>
             </Link>
           </nav>
         </div>
