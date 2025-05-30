@@ -1,5 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const holdings = [
   {
@@ -41,6 +42,52 @@ const holdings = [
 ];
 
 const HoldingsTable = () => {
+  const isMobile = useIsMobile();
+
+  if (isMobile) {
+    return (
+      <Card className="bg-white shadow-sm border border-gray-200">
+        <CardHeader>
+          <CardTitle className="text-lg font-semibold text-gray-900">Top Holdings</CardTitle>
+        </CardHeader>
+        <CardContent className="p-4 space-y-4">
+          {holdings.map((holding, index) => (
+            <div key={index} className="border rounded-lg p-4 space-y-2">
+              <div className="flex justify-between items-start">
+                <h4 className="font-medium text-sm text-gray-900 leading-tight">{holding.fund}</h4>
+                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 ml-2 flex-shrink-0">
+                  {holding.type}
+                </span>
+              </div>
+              <div className="grid grid-cols-2 gap-2 text-xs">
+                <div>
+                  <span className="text-gray-500">Commitment:</span>
+                  <p className="font-medium">{holding.commitment}</p>
+                </div>
+                <div>
+                  <span className="text-gray-500">Invested:</span>
+                  <p className="font-medium">{holding.invested}</p>
+                </div>
+                <div>
+                  <span className="text-gray-500">Current Value:</span>
+                  <p className="font-medium">{holding.value}</p>
+                </div>
+                <div>
+                  <span className="text-gray-500">IRR:</span>
+                  <p className="font-medium text-green-600">{holding.irr}</p>
+                </div>
+              </div>
+              <div className="flex justify-between items-center pt-1 border-t">
+                <span className="text-xs text-gray-500">Multiple:</span>
+                <span className="font-medium text-sm">{holding.multiple}</span>
+              </div>
+            </div>
+          ))}
+        </CardContent>
+      </Card>
+    );
+  }
+
   return (
     <Card className="bg-white shadow-sm border border-gray-200">
       <CardHeader>

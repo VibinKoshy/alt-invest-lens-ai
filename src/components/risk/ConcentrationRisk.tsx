@@ -76,18 +76,18 @@ const ConcentrationRisk = ({ detailed = false }: ConcentrationRiskProps) => {
   return (
     <Card className="bg-white shadow-sm border border-gray-200">
       <CardHeader>
-        <CardTitle className="text-lg font-semibold text-gray-900">Concentration Risk Monitor</CardTitle>
+        <CardTitle className="text-base md:text-lg font-semibold text-gray-900">Concentration Risk Monitor</CardTitle>
       </CardHeader>
-      <CardContent className="space-y-6">
+      <CardContent className="space-y-4 md:space-y-6">
         {concentrationData.map((item, index) => (
-          <div key={index} className="space-y-3">
-            <div className="flex justify-between items-center">
-              <div>
-                <span className="text-sm font-medium text-gray-700">{item.category}</span>
-                <p className="text-xs text-gray-500">{item.description}</p>
+          <div key={index} className="space-y-2 md:space-y-3">
+            <div className="flex justify-between items-start gap-2">
+              <div className="min-w-0 flex-1">
+                <span className="text-xs md:text-sm font-medium text-gray-700 block">{item.category}</span>
+                <p className="text-xs text-gray-500 leading-tight">{item.description}</p>
               </div>
-              <div className="flex items-center space-x-3">
-                <span className="text-sm font-medium text-gray-900">
+              <div className="flex items-center space-x-2 md:space-x-3 flex-shrink-0">
+                <span className="text-xs md:text-sm font-medium text-gray-900 whitespace-nowrap">
                   {item.current}% / {item.limit}%
                 </span>
                 <Badge variant={getStatusBadgeVariant(item.status)} className="text-xs">
@@ -98,10 +98,10 @@ const ConcentrationRisk = ({ detailed = false }: ConcentrationRiskProps) => {
             <div className="relative">
               <Progress 
                 value={(item.current / item.limit) * 100} 
-                className="h-3"
+                className="h-2 md:h-3"
               />
               <div 
-                className={`absolute top-0 left-0 h-3 rounded-full transition-all ${getProgressColor(item.status)}`}
+                className={`absolute top-0 left-0 h-2 md:h-3 rounded-full transition-all ${getProgressColor(item.status)}`}
                 style={{ width: `${(item.current / item.limit) * 100}%` }}
               />
             </div>

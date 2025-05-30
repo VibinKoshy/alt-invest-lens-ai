@@ -65,35 +65,35 @@ const ComplianceOverview = ({ detailed = false }: ComplianceOverviewProps) => {
 
   const getTrendIcon = (trend: string) => {
     switch (trend) {
-      case 'up': return <TrendingUp className="h-4 w-4 text-green-600" />;
-      case 'down': return <TrendingDown className="h-4 w-4 text-red-600" />;
-      default: return <Minus className="h-4 w-4 text-gray-400" />;
+      case 'up': return <TrendingUp className="h-3 w-3 md:h-4 md:w-4 text-green-600" />;
+      case 'down': return <TrendingDown className="h-3 w-3 md:h-4 md:w-4 text-red-600" />;
+      default: return <Minus className="h-3 w-3 md:h-4 md:w-4 text-gray-400" />;
     }
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 col-span-full">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 col-span-full">
       {overviewMetrics.map((metric, index) => (
         <Card key={index} className="bg-white shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between">
-              <CardTitle className="text-sm font-medium text-gray-600">{metric.title}</CardTitle>
-              <Badge variant={getStatusBadgeVariant(metric.status)} className="text-xs">
+              <CardTitle className="text-xs md:text-sm font-medium text-gray-600 leading-tight">{metric.title}</CardTitle>
+              <Badge variant={getStatusBadgeVariant(metric.status)} className="text-xs flex-shrink-0">
                 {metric.status.charAt(0).toUpperCase() + metric.status.slice(1)}
               </Badge>
             </div>
           </CardHeader>
-          <CardContent>
+          <CardContent className="pt-0">
             <div className="flex items-baseline justify-between mb-2">
-              <div>
-                <p className={`text-2xl font-bold ${getStatusColor(metric.status)}`}>
+              <div className="min-w-0 flex-1">
+                <p className={`text-lg md:text-2xl font-bold ${getStatusColor(metric.status)}`}>
                   {metric.value}
                 </p>
-                <p className="text-xs text-gray-500 mt-1">{metric.description}</p>
+                <p className="text-xs text-gray-500 mt-1 leading-tight">{metric.description}</p>
               </div>
-              <div className="flex items-center space-x-1">
+              <div className="flex items-center space-x-1 flex-shrink-0 ml-2">
                 {getTrendIcon(metric.trend)}
-                <span className="text-sm font-medium text-gray-600">{metric.change}</span>
+                <span className="text-xs md:text-sm font-medium text-gray-600">{metric.change}</span>
               </div>
             </div>
           </CardContent>

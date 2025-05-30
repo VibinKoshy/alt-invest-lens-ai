@@ -32,11 +32,11 @@ const AIAssistant = () => {
   if (!apiKeySet) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <main className="px-6 py-8">
+        <main className="px-4 md:px-6 py-6 md:py-8">
           <div className="max-w-4xl mx-auto">
-            <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">AI Portfolio Assistant</h2>
-              <p className="text-gray-600">Ask natural language questions about your portfolio and get AI-powered insights</p>
+            <div className="mb-6 md:mb-8">
+              <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">AI Portfolio Assistant</h2>
+              <p className="text-sm md:text-base text-gray-600">Ask natural language questions about your portfolio and get AI-powered insights</p>
             </div>
             <APIKeyInput onKeySet={() => setApiKeySet(true)} />
           </div>
@@ -47,15 +47,15 @@ const AIAssistant = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <main className="px-6 py-8">
+      <main className="px-4 md:px-6 py-6 md:py-8">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">AI Portfolio Assistant</h2>
-            <p className="text-gray-600">Ask natural language questions about your portfolio and get AI-powered insights</p>
+          <div className="mb-6 md:mb-8">
+            <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">AI Portfolio Assistant</h2>
+            <p className="text-sm md:text-base text-gray-600">Ask natural language questions about your portfolio and get AI-powered insights</p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            <div className="lg:col-span-3 space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 md:gap-6">
+            <div className="lg:col-span-3 space-y-4 md:space-y-6">
               <ChatInterface 
                 messages={messages} 
                 isLoading={isLoading}

@@ -42,22 +42,22 @@ const QuerySuggestions = ({ onSuggestionClick }: QuerySuggestionsProps) => {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       <Card className="bg-white shadow-sm border border-gray-200">
-        <CardHeader>
-          <CardTitle className="text-lg font-semibold text-gray-900">Quick Questions</CardTitle>
+        <CardHeader className="pb-3">
+          <CardTitle className="text-base md:text-lg font-semibold text-gray-900">Quick Questions</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3 md:space-y-4">
           {suggestions.map((section, index) => (
             <div key={index}>
-              <h4 className="text-sm font-medium text-gray-700 mb-2">{section.category}</h4>
-              <div className="space-y-2">
+              <h4 className="text-xs md:text-sm font-medium text-gray-700 mb-2">{section.category}</h4>
+              <div className="space-y-1.5 md:space-y-2">
                 {section.queries.map((query, queryIndex) => (
                   <Button
                     key={queryIndex}
                     variant="outline"
                     size="sm"
-                    className="w-full text-left justify-start min-h-[2.5rem] h-auto px-3 py-2 text-sm font-normal whitespace-normal break-words leading-tight"
+                    className="w-full text-left justify-start min-h-[2rem] md:min-h-[2.5rem] h-auto px-2 md:px-3 py-1.5 md:py-2 text-xs md:text-sm font-normal whitespace-normal break-words leading-tight"
                     onClick={() => handleSuggestionClick(query)}
                   >
                     {query}
