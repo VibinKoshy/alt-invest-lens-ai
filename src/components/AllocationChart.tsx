@@ -1,5 +1,6 @@
 
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from 'recharts';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const data = [
   { name: 'Private Equity', value: 35, color: '#1f2937' },
@@ -10,17 +11,24 @@ const data = [
 ];
 
 const AllocationChart = () => {
+  const isMobile = useIsMobile();
+
+  // Responsive chart dimensions
+  const chartHeight = isMobile ? 250 : 300;
+  const innerRadius = isMobile ? 40 : 60;
+  const outerRadius = isMobile ? 80 : 120;
+
   return (
-    <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+    <div className="bg-white p-4 md:p-6 rounded-lg shadow-sm border border-gray-200">
       <h3 className="text-lg font-semibold text-gray-900 mb-4">Asset Allocation</h3>
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={chartHeight}>
         <PieChart>
           <Pie
             data={data}
             cx="50%"
             cy="50%"
-            innerRadius={60}
-            outerRadius={120}
+            innerRadius={innerRadius}
+            outerRadius={outerRadius}
             paddingAngle={2}
             dataKey="value"
           >
