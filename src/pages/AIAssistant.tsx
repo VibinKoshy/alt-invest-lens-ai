@@ -10,6 +10,7 @@ const AIAssistant = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [apiKeySet, setApiKeySet] = useState(false);
+  const [inputValue, setInputValue] = useState('');
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -22,6 +23,10 @@ const AIAssistant = () => {
 
   const addMessage = (message: ChatMessage) => {
     setMessages(prev => [...prev, message]);
+  };
+
+  const handleSuggestionClick = (query: string) => {
+    setInputValue(query);
   };
 
   if (!apiKeySet) {
@@ -59,12 +64,14 @@ const AIAssistant = () => {
                 onSendMessage={addMessage}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
+                inputValue={inputValue}
+                setInputValue={setInputValue}
               />
               <div ref={chatEndRef} />
             </div>
             
             <div className="lg:col-span-1">
-              <QuerySuggestions onSuggestionClick={addMessage} />
+              <QuerySuggestions onSuggestionClick={handleSuggestionClick} />
             </div>
           </div>
         </div>

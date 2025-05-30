@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
@@ -12,12 +12,40 @@ interface MessageInputProps {
   onSendMessage: (message: ChatMessage) => void;
   isLoading: boolean;
   setIsLoading: (loading: boolean) => void;
+  inputValue?: string;
+  setInputValue?: (value: string) => void;
 }
 
-const MessageInput = ({ onSendMessage, isLoading, setIsLoading }: MessageInputProps) => {
+const MessageInput = ({ 
+  onSendMessage, 
+  isLoading, 
+  setIsLoading,
+  inputValue: externalInputValue = '',
+  setInputValue: setExternalInputValue
+}: MessageInputProps) => {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const { toast } = useToast();
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  // Handle external input value updates
+  useEffect(() => {
+    if (externalInputValue && externalInputValue !== input) {
+      setInput(externalInputValue);
+      // Focus the textarea when external input is set
+      setTimeout(() => {
+        textareaRef.current?.focus();
+      }, 100);
+    }
+  }, [externalInputValue]);
+
+  // Update external input value when internal input changes
+  const handleInputChange = (value: string) => {
+    setInput(value);
+    if (setExternalInputValue) {
+      setExternalInputValue(value);
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,7 +62,7 @@ const MessageInput = ({ onSendMessage, isLoading, setIsLoading }: MessageInputPr
     const updatedMessages = [...messages, userMessage];
     setMessages(updatedMessages);
     onSendMessage(userMessage);
-    setInput('');
+    handleInputChange('');
     setIsLoading(true);
 
     try {
@@ -74,8 +102,9 @@ const MessageInput = ({ onSendMessage, isLoading, setIsLoading }: MessageInputPr
       <CardContent className="p-4">
         <form onSubmit={handleSubmit} className="flex space-x-4">
           <Textarea
+            ref={textareaRef}
             value={input}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => handleInputChange(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Ask about your portfolio... (e.g., 'What's our exposure to renewable energy?' or 'Summarize last quarter's performance')"
             className="flex-1 min-h-[80px] resize-none"

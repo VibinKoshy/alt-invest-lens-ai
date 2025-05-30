@@ -1,10 +1,9 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ChatMessage } from '@/lib/openai';
 
 interface QuerySuggestionsProps {
-  onSuggestionClick: (message: ChatMessage) => void;
+  onSuggestionClick: (query: string) => void;
 }
 
 const QuerySuggestions = ({ onSuggestionClick }: QuerySuggestionsProps) => {
@@ -39,13 +38,7 @@ const QuerySuggestions = ({ onSuggestionClick }: QuerySuggestionsProps) => {
   ];
 
   const handleSuggestionClick = (query: string) => {
-    const message: ChatMessage = {
-      id: `suggestion-${Date.now()}`,
-      role: 'user',
-      content: query,
-      timestamp: new Date()
-    };
-    onSuggestionClick(message);
+    onSuggestionClick(query);
   };
 
   return (
@@ -64,7 +57,7 @@ const QuerySuggestions = ({ onSuggestionClick }: QuerySuggestionsProps) => {
                     key={queryIndex}
                     variant="outline"
                     size="sm"
-                    className="w-full text-left justify-start h-auto p-2 text-xs"
+                    className="w-full text-left justify-start min-h-[2.5rem] h-auto px-3 py-2 text-sm font-normal whitespace-normal break-words leading-tight"
                     onClick={() => handleSuggestionClick(query)}
                   >
                     {query}
