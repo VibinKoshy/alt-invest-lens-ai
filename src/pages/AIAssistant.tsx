@@ -1,6 +1,5 @@
 
 import { useState, useRef, useEffect } from 'react';
-import Header from '@/components/Header';
 import ChatInterface from '@/components/ai/ChatInterface';
 import MessageInput from '@/components/ai/MessageInput';
 import QuerySuggestions from '@/components/ai/QuerySuggestions';
@@ -28,7 +27,6 @@ const AIAssistant = () => {
   if (!apiKeySet) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <Header />
         <main className="px-6 py-8">
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
@@ -44,8 +42,6 @@ const AIAssistant = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
-      
       <main className="px-6 py-8">
         <div className="max-w-6xl mx-auto">
           <div className="mb-8">

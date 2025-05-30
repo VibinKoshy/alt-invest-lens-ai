@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import Header from '@/components/Header';
 import AssumptionControls from '@/components/scenarios/AssumptionControls';
 import ForecastDisplay from '@/components/scenarios/ForecastDisplay';
 import ScenarioComparison from '@/components/scenarios/ScenarioComparison';
@@ -62,9 +61,8 @@ const ScenarioModeling = () => {
   const loadScenario = (scenarioAssumptions: Assumptions) => {
     setAssumptions(scenarioAssumptions);
   };
-  return <div className="min-h-screen bg-gray-50">
-      <Header />
-      
+  return (
+    <div className="min-h-screen bg-gray-50">
       <main className="px-6 py-8">
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Scenario Modeling</h2>
@@ -101,6 +99,7 @@ const ScenarioModeling = () => {
           </TabsContent>
         </Tabs>
       </main>
-    </div>;
+    </div>
+  );
 };
 export default ScenarioModeling;

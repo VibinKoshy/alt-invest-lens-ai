@@ -1,7 +1,5 @@
-
 import React, { useState } from 'react';
 import { Upload, FileText, TrendingUp, DollarSign, Building } from 'lucide-react';
-import Header from '@/components/Header';
 import FileUploadZone from '@/components/upload/FileUploadZone';
 import UploadProgress from '@/components/upload/UploadProgress';
 import DataExtractionStatus from '@/components/upload/DataExtractionStatus';
@@ -139,8 +137,6 @@ const DataUpload = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
-      
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Document Upload</h1>

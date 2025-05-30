@@ -1,6 +1,5 @@
 
 import { useState } from 'react';
-import Header from '@/components/Header';
 import ConcentrationRisk from '@/components/risk/ConcentrationRisk';
 import AllocationCompliance from '@/components/risk/AllocationCompliance';
 import ESGCompliance from '@/components/risk/ESGCompliance';
@@ -13,8 +12,6 @@ const RiskCompliance = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
-      
       <main className="px-6 py-8">
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-2">Risk & Compliance Dashboard</h2>
