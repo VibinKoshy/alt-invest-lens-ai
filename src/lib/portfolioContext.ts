@@ -31,6 +31,13 @@ export const buildPortfolioContext = (): string => {
     concentrationLevel: 'Medium'
   };
 
+  // Vintage IRR data for context
+  const vintageData = {
+    bestVintageIRR: 24.8,
+    worstVintageIRR: 12.4,
+    vintageSpread: 12.4
+  };
+
   return `
 PORTFOLIO PERFORMANCE:
 - Year-to-Date Return: ${performanceData.ytdReturn}%
@@ -46,6 +53,11 @@ RISK METRICS:
 - Concentration Risk: ${riskMetrics.concentrationRisk}
 - Liquidity Risk: ${riskMetrics.liquidityRisk}
 - Vintage Diversification: ${riskMetrics.vintageDiversification}
+
+VINTAGE ANALYSIS:
+- Best Vintage IRR: ${vintageData.bestVintageIRR}%
+- Worst Vintage IRR: ${vintageData.worstVintageIRR}%
+- Vintage Spread (Best - Worst): ${vintageData.vintageSpread}%
 
 COMPLIANCE STATUS:
 - Overall Compliance Score: ${complianceStatus.overallScore}%

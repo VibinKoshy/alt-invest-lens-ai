@@ -6,6 +6,30 @@ import HoldingsTable from '@/components/HoldingsTable';
 import RiskMetrics from '@/components/RiskMetrics';
 
 const Index = () => {
+  // Calculate vintage spread (IRR best vintage - IRR worst vintage)
+  const calculateVintageSpread = () => {
+    // Sample vintage IRR data - in real implementation this would come from API/state
+    const vintageIRRs = {
+      2019: 24.8,
+      2020: 12.4,
+      2021: 18.2,
+      2022: 21.5,
+      2023: 16.3
+    };
+    
+    const irrValues = Object.values(vintageIRRs);
+    const maxIRR = Math.max(...irrValues);
+    const minIRR = Math.min(...irrValues);
+    const spread = maxIRR - minIRR;
+    
+    return {
+      spread: spread.toFixed(1),
+      change: "+1.2" // This would be calculated based on previous period
+    };
+  };
+
+  const vintageSpreadData = calculateVintageSpread();
+
   return (
     <div className="min-h-screen bg-gray-50">
       <main className="px-6 py-8">
@@ -36,10 +60,10 @@ const Index = () => {
             />
             <MetricsCard
               title="Vintage Spread"
-              value="8 years"
-              change="-1 year"
-              changeType="negative"
-              subtitle="concentration"
+              value={`${vintageSpreadData.spread}%`}
+              change={`${vintageSpreadData.change}%`}
+              changeType="positive"
+              subtitle="IRR variance"
             />
           </div>
         </div>
