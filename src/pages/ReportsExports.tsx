@@ -48,12 +48,20 @@ const ReportsExports = () => {
           <p className="text-gray-600">Generate professional reports for Investment Committee presentations</p>
         </div>
 
-        <Tabs defaultValue="builder" className="space-y-8">
+        <Tabs defaultValue="templates" className="space-y-8">
           <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="builder">Report Builder</TabsTrigger>
             <TabsTrigger value="templates">Templates</TabsTrigger>
+            <TabsTrigger value="builder">Report Builder</TabsTrigger>
             <TabsTrigger value="history">Export History</TabsTrigger>
           </TabsList>
+
+          <TabsContent value="templates">
+            <ReportTemplateSelector 
+              selectedTemplate={selectedTemplate}
+              onTemplateSelect={setSelectedTemplate}
+              showAll={true}
+            />
+          </TabsContent>
 
           <TabsContent value="builder">
             <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
@@ -80,14 +88,6 @@ const ReportsExports = () => {
                 />
               </div>
             </div>
-          </TabsContent>
-
-          <TabsContent value="templates">
-            <ReportTemplateSelector 
-              selectedTemplate={selectedTemplate}
-              onTemplateSelect={setSelectedTemplate}
-              showAll={true}
-            />
           </TabsContent>
 
           <TabsContent value="history">
