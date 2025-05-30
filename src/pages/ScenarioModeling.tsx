@@ -63,25 +63,31 @@ const ScenarioModeling = () => {
   };
   return (
     <div className="min-h-screen bg-gray-50">
-      <main className="px-6 py-8">
-        <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Scenario Modeling</h2>
-          <p className="text-gray-600">Adjust assumptions and view real-time portfolio forecasts</p>
+      <main className="px-4 md:px-6 py-6 md:py-8">
+        <div className="mb-6 md:mb-8">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Scenario Modeling</h2>
+          <p className="text-sm md:text-base text-gray-600">Adjust assumptions and view real-time portfolio forecasts</p>
         </div>
 
-        <Tabs defaultValue="presets" className="space-y-8">
-          <TabsList className="grid w-full grid-cols-3">
-            <TabsTrigger value="presets">Market Scenarios</TabsTrigger>
-            <TabsTrigger value="modeling">Interactive Modeling</TabsTrigger>
-            <TabsTrigger value="comparison">Scenario Comparison</TabsTrigger>
+        <Tabs defaultValue="presets" className="space-y-6 md:space-y-8">
+          <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 gap-1">
+            <TabsTrigger value="presets" className="text-xs sm:text-sm px-2 md:px-4 py-2 whitespace-nowrap">
+              Market Scenarios
+            </TabsTrigger>
+            <TabsTrigger value="modeling" className="text-xs sm:text-sm px-2 md:px-4 py-2 whitespace-nowrap">
+              Interactive Modeling
+            </TabsTrigger>
+            <TabsTrigger value="comparison" className="text-xs sm:text-sm px-2 md:px-4 py-2 whitespace-nowrap">
+              Scenario Comparison
+            </TabsTrigger>
           </TabsList>
 
           <TabsContent value="presets">
             <MarketScenarios onLoadScenario={loadScenario} />
           </TabsContent>
 
-          <TabsContent value="modeling" className="space-y-8">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <TabsContent value="modeling" className="space-y-6 md:space-y-8">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
               <div className="lg:col-span-1">
                 <AssumptionControls assumptions={assumptions} onUpdateAssumption={updateAssumption} onReset={resetAssumptions} onSave={saveScenario} />
               </div>
