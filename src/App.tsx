@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import DataUpload from "./pages/DataUpload";
 import ScenarioModeling from "./pages/ScenarioModeling";
 import RiskCompliance from "./pages/RiskCompliance";
+import ReportsExports from "./pages/ReportsExports";
 import AIAssistant from "./pages/AIAssistant";
 import NotFound from "./pages/NotFound";
 
@@ -24,6 +25,7 @@ const App = () => (
           <Route path="/upload" element={<DataUpload />} />
           <Route path="/scenarios" element={<ScenarioModeling />} />
           <Route path="/risk-compliance" element={<RiskCompliance />} />
+          <Route path="/reports" element={<ReportsExports />} />
           <Route path="/ai-assistant" element={<AIAssistant />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
