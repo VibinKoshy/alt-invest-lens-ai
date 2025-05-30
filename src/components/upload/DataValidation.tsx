@@ -140,14 +140,14 @@ const DataValidation: React.FC<DataValidationProps> = ({ files, onValidate }) =>
               </label>
               {editingField === key ? (
                 <Input
-                  value={editedData[selectedFileId]?.[key] || value}
+                  value={editedData[selectedFileId]?.[key] || String(value || '')}
                   onChange={(e) => handleEdit(key, e.target.value)}
                   className="w-full"
                   autoFocus
                 />
               ) : (
                 <p className="text-gray-900 bg-gray-50 p-2 rounded border">
-                  {value}
+                  {String(value || '')}
                 </p>
               )}
             </div>
