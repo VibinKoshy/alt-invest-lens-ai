@@ -1,5 +1,5 @@
 
-import { TrendingUp, Settings, Bell, User, Upload, BarChart3 } from 'lucide-react';
+import { TrendingUp, Settings, Bell, User, Upload, BarChart3, Shield } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -53,6 +53,17 @@ const Header = () => {
             >
               <BarChart3 className="h-4 w-4" />
               <span>Scenario Modeling</span>
+            </Link>
+            <Link 
+              to="/risk-compliance" 
+              className={`flex items-center space-x-1 text-sm font-medium transition-colors ${
+                isActive('/risk-compliance') 
+                  ? 'text-blue-600 border-b-2 border-blue-600 pb-1' 
+                  : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              <Shield className="h-4 w-4" />
+              <span>Risk & Compliance</span>
             </Link>
           </nav>
         </div>

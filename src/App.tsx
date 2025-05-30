@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import DataUpload from "./pages/DataUpload";
 import ScenarioModeling from "./pages/ScenarioModeling";
+import RiskCompliance from "./pages/RiskCompliance";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -21,6 +22,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/upload" element={<DataUpload />} />
           <Route path="/scenarios" element={<ScenarioModeling />} />
+          <Route path="/risk-compliance" element={<RiskCompliance />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
