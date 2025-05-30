@@ -4,8 +4,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
-import { Eye, EyeOff, Key } from 'lucide-react';
-import { initializeOpenAI } from '@/lib/openai';
+import { Eye, EyeOff, Key, Play } from 'lucide-react';
+import { initializeOpenAI, enableDemoMode } from '@/lib/openai';
 import { useToast } from '@/hooks/use-toast';
 
 interface APIKeyInputProps {
@@ -53,6 +53,15 @@ const APIKeyInput = ({ onKeySet }: APIKeyInputProps) => {
     }
   };
 
+  const handleDemoMode = () => {
+    enableDemoMode();
+    toast({
+      title: "Demo Mode Enabled",
+      description: "You can now explore the AI assistant with sample data!",
+    });
+    onKeySet();
+  };
+
   return (
     <div className="max-w-md mx-auto">
       <Card className="bg-white shadow-sm border border-gray-200">
@@ -60,15 +69,15 @@ const APIKeyInput = ({ onKeySet }: APIKeyInputProps) => {
           <div className="mx-auto mb-4 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
             <Key className="h-6 w-6 text-blue-600" />
           </div>
-          <CardTitle className="text-xl font-semibold text-gray-900">OpenAI API Key Required</CardTitle>
+          <CardTitle className="text-xl font-semibold text-gray-900">AI Portfolio Assistant</CardTitle>
           <p className="text-sm text-gray-600 mt-2">
-            To use the AI assistant, please enter your OpenAI API key. Your key is stored locally and never shared.
+            Enter your OpenAI API key for full functionality, or try demo mode with sample data.
           </p>
         </CardHeader>
-        <CardContent>
+        <CardContent className="space-y-4">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <Label htmlFor="apiKey">OpenAI API Key</Label>
+              <Label htmlFor="apiKey">OpenAI API Key (Optional)</Label>
               <div className="relative mt-1">
                 <Input
                   id="apiKey"
@@ -97,9 +106,27 @@ const APIKeyInput = ({ onKeySet }: APIKeyInputProps) => {
               className="w-full" 
               disabled={isLoading}
             >
-              {isLoading ? 'Setting up...' : 'Start Chatting'}
+              {isLoading ? 'Setting up...' : 'Start with API Key'}
             </Button>
           </form>
+
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <span className="w-full border-t" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+              <span className="bg-white px-2 text-gray-500">Or</span>
+            </div>
+          </div>
+
+          <Button 
+            variant="outline" 
+            className="w-full" 
+            onClick={handleDemoMode}
+          >
+            <Play className="h-4 w-4 mr-2" />
+            Try Demo Mode
+          </Button>
           
           <div className="mt-4 p-3 bg-blue-50 rounded-lg">
             <p className="text-xs text-blue-800">

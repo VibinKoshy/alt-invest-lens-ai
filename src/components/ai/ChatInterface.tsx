@@ -3,6 +3,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { User, Bot } from 'lucide-react';
 import { ChatMessage } from '@/lib/openai';
+import { isInDemoMode } from '@/lib/openai';
 
 interface ChatInterfaceProps {
   messages: ChatMessage[];
@@ -10,6 +11,8 @@ interface ChatInterfaceProps {
 }
 
 const ChatInterface = ({ messages, isLoading }: ChatInterfaceProps) => {
+  const demoMode = isInDemoMode();
+
   if (messages.length === 0 && !isLoading) {
     return (
       <Card className="bg-white shadow-sm border border-gray-200">
@@ -19,12 +22,17 @@ const ChatInterface = ({ messages, isLoading }: ChatInterfaceProps) => {
           </div>
           <h3 className="text-lg font-medium text-gray-900 mb-2">
             Welcome to your AI Portfolio Assistant
+            {demoMode && <span className="text-sm bg-orange-100 text-orange-800 px-2 py-1 rounded-full ml-2">Demo Mode</span>}
           </h3>
           <p className="text-gray-600 mb-4">
             Ask questions about your portfolio performance, risk exposure, compliance status, or any other portfolio-related queries.
           </p>
           <div className="text-sm text-gray-500">
-            Try asking: "What's our current allocation?" or "How did we perform last quarter?"
+            {demoMode ? (
+              <>Try asking: "What's our current performance?" or "Show me risk metrics?"</>
+            ) : (
+              <>Try asking: "What's our current allocation?" or "How did we perform last quarter?"</>
+            )}
           </div>
         </CardContent>
       </Card>
@@ -34,6 +42,18 @@ const ChatInterface = ({ messages, isLoading }: ChatInterfaceProps) => {
   return (
     <Card className="bg-white shadow-sm border border-gray-200">
       <CardContent className="p-6">
+        {demoMode && (
+          <div className="mb-4 p-3 bg-orange-50 border border-orange-200 rounded-lg">
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
+              <span className="text-sm font-medium text-orange-800">Demo Mode Active</span>
+            </div>
+            <p className="text-xs text-orange-700 mt-1">
+              Responses use sample portfolio data. Enter your API key for real portfolio analysis.
+            </p>
+          </div>
+        )}
+        
         <div className="space-y-6 max-h-96 overflow-y-auto">
           {messages.map((message) => (
             <div key={message.id} className="flex space-x-3">
