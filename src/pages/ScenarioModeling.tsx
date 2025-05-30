@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import Header from '@/components/Header';
 import AssumptionControls from '@/components/scenarios/AssumptionControls';
@@ -6,7 +5,6 @@ import ForecastDisplay from '@/components/scenarios/ForecastDisplay';
 import ScenarioComparison from '@/components/scenarios/ScenarioComparison';
 import MarketScenarios from '@/components/scenarios/MarketScenarios';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-
 export interface Assumptions {
   capitalCallFrequency: number;
   distributionTiming: 'quarterly' | 'annual';
@@ -21,7 +19,6 @@ export interface Assumptions {
   marketVolatility: 'low' | 'medium' | 'high';
   inflation: number;
 }
-
 const defaultAssumptions: Assumptions = {
   capitalCallFrequency: 12,
   distributionTiming: 'quarterly',
@@ -36,37 +33,36 @@ const defaultAssumptions: Assumptions = {
   marketVolatility: 'medium',
   inflation: 2.5
 };
-
 const ScenarioModeling = () => {
   const [assumptions, setAssumptions] = useState<Assumptions>(defaultAssumptions);
-  const [savedScenarios, setSavedScenarios] = useState<Array<{id: string, name: string, assumptions: Assumptions}>>([]);
-
+  const [savedScenarios, setSavedScenarios] = useState<Array<{
+    id: string;
+    name: string;
+    assumptions: Assumptions;
+  }>>([]);
   const updateAssumption = (key: keyof Assumptions, value: any) => {
     setAssumptions(prev => ({
       ...prev,
       [key]: value
     }));
   };
-
   const resetAssumptions = () => {
     setAssumptions(defaultAssumptions);
   };
-
   const saveScenario = (name: string) => {
     const newScenario = {
       id: Date.now().toString(),
       name,
-      assumptions: { ...assumptions }
+      assumptions: {
+        ...assumptions
+      }
     };
     setSavedScenarios(prev => [...prev, newScenario]);
   };
-
   const loadScenario = (scenarioAssumptions: Assumptions) => {
     setAssumptions(scenarioAssumptions);
   };
-
-  return (
-    <div className="min-h-screen bg-gray-50">
+  return <div className="min-h-screen bg-gray-50">
       <Header />
       
       <main className="px-6 py-8">
@@ -77,7 +73,7 @@ const ScenarioModeling = () => {
 
         <Tabs defaultValue="modeling" className="space-y-8">
           <TabsList className="grid w-full grid-cols-3 lg:w-[400px]">
-            <TabsTrigger value="modeling">Interactive Modeling</TabsTrigger>
+            <TabsTrigger value="modeling" className="py-[5px] my-[5px] mx-[5px]">Interactive Modeling</TabsTrigger>
             <TabsTrigger value="comparison">Scenario Comparison</TabsTrigger>
             <TabsTrigger value="presets">Market Scenarios</TabsTrigger>
           </TabsList>
@@ -85,12 +81,7 @@ const ScenarioModeling = () => {
           <TabsContent value="modeling" className="space-y-8">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               <div className="lg:col-span-1">
-                <AssumptionControls
-                  assumptions={assumptions}
-                  onUpdateAssumption={updateAssumption}
-                  onReset={resetAssumptions}
-                  onSave={saveScenario}
-                />
+                <AssumptionControls assumptions={assumptions} onUpdateAssumption={updateAssumption} onReset={resetAssumptions} onSave={saveScenario} />
               </div>
               <div className="lg:col-span-2">
                 <ForecastDisplay assumptions={assumptions} />
@@ -99,11 +90,10 @@ const ScenarioModeling = () => {
           </TabsContent>
 
           <TabsContent value="comparison">
-            <ScenarioComparison
-              currentScenario={{ name: 'Current', assumptions }}
-              savedScenarios={savedScenarios}
-              onLoadScenario={loadScenario}
-            />
+            <ScenarioComparison currentScenario={{
+            name: 'Current',
+            assumptions
+          }} savedScenarios={savedScenarios} onLoadScenario={loadScenario} />
           </TabsContent>
 
           <TabsContent value="presets">
@@ -111,8 +101,6 @@ const ScenarioModeling = () => {
           </TabsContent>
         </Tabs>
       </main>
-    </div>
-  );
+    </div>;
 };
-
 export default ScenarioModeling;
