@@ -1,5 +1,4 @@
 
-import Header from '@/components/Header';
 import MetricsCard from '@/components/MetricsCard';
 import AllocationChart from '@/components/AllocationChart';
 import PerformanceChart from '@/components/PerformanceChart';
@@ -9,8 +8,6 @@ import RiskMetrics from '@/components/RiskMetrics';
 const Index = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
-      
       <main className="px-6 py-8">
         {/* Portfolio Overview */}
         <div className="mb-8">
